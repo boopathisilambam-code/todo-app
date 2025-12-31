@@ -62,7 +62,7 @@
   border-radius: 12px;
   border: 2px solid var(--border-light);
   font-size: 1rem;
-  color: #334155;           /* text color */
+  color: #334155; /* text color */
   background: #ffffff;
 }
 
@@ -113,7 +113,7 @@
   flex: 1;
   font-size: 1rem;
   word-break: break-word;
-  color:black;
+  color: black;
 }
 
 /* Completed */
@@ -122,16 +122,47 @@
   opacity: 0.6;
 }
 
-/* Action buttons */
+/* Edit input (matches add input style) */
+.edit-input {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 2px solid var(--border-light);
+  font-size: 1rem;
+  color: #334155;
+  background: #ffffff;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Edit buttons container */
+.edit-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Item buttons container (for edit and delete) */
+.item-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Action buttons (edit, delete, save, cancel) */
 .todo-item button {
   background: transparent;
   border: none;
   cursor: pointer;
   color: #94a3b8;
+  padding: 0.25rem;
+  border-radius: 4px;
 }
 
 .todo-item button:hover {
   color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
 }
 
 /* Logout */
@@ -164,5 +195,16 @@
   .input-group button {
     height: 3rem;
     justify-content: center;
+  }
+
+  .todo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .item-buttons,
+  .edit-buttons {
+    align-self: flex-end;
   }
 }
