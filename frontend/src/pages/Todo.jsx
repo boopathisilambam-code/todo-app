@@ -117,7 +117,7 @@ function Todo() {
   };
 
   return (
-    <div className="todo-page">
+    <div className={`todo-page ${darkMode ? "dark" : ""}`}>
       <div className="todo-container">
         <div className="todo-header">
           <h1>My Tasks</h1>
