@@ -1,217 +1,195 @@
-THEME VARIABLES
+/* ===============================
+   THEME VARIABLES
 ================================ */
 :root {
---primary: #7c6bf2;
---danger: #ef4444;
+  --primary: #7c6bf2;
+  --danger: #ef4444;
 
+  --bg-page: #f5f7fb;
+  --surface: #ffffff;
+  --item-bg: #f8fafc;
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --muted: #64748b;
 
---bg-page: #f5f7fb;
---surface: #ffffff;
---item-bg: #f8fafc;
---border: #e5e7eb;
---text: #0f172a;
---muted: #64748b;
-
-
---shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
-
 
 /* DARK MODE */
 .todo-page.dark {
---bg-page: #020617;
---surface: #020617;
---item-bg: rgba(255, 255, 255, 0.05);
---border: #1e293b;
---text: #f8fafc;
---muted: #94a3b8;
+  --bg-page: #020617;
+  --surface: #020617;
+  --item-bg: rgba(255, 255, 255, 0.05);
+  --border: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
 }
 
-
 /* ===============================
-PAGE
+   PAGE
 ================================ */
 .todo-page {
-min-height: 100vh;
-background: var(--bg-page);
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 1.5rem;
-color: var(--text);
+  min-height: 100vh;
+  background: var(--bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  color: var(--text);
 }
 
-
 /* ===============================
-CONTAINER (CARD)
+   CONTAINER (CARD)
 ================================ */
 .todo-container {
-width: 100%;
-max-width: 420px;
-background: var(--surface);
-border-radius: 20px;
-padding: 1.8rem;
-box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
 }
 
-
 /* ===============================
-HEADER
+   HEADER
 ================================ */
 .todo-header h1 {
-font-size: 1.8rem;
-font-weight: 800;
-color: var(--primary);
-margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
 }
-
 
 /* ===============================
-INPUT
+   INPUT
 ================================ */
 .input-group {
-display: flex;
-gap: 0.6rem;
-margin-bottom: 1.5rem;
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
 }
-
 
 .input-group input {
-flex: 1;
-padding: 0.7rem 0.9rem;
-border-radius: 10px;
-border: 1.5px solid var(--border);
-background: transparent;
-color: var(--text);
-font-size: 0.95rem;
+  flex: 1;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
 }
-
 
 .input-group input::placeholder {
-color: var(--muted);
+  color: var(--muted);
 }
-
 
 .input-group input:focus {
-outline: none;
-border-color: var(--primary);
+  outline: none;
+  border-color: var(--primary);
 }
-
 
 /* ADD BUTTON */
 .input-group button {
-padding: 0 1rem;
-border-radius: 10px;
-background: var(--primary);
-color: white;
-border: none;
-font-size: 0.9rem;
-font-weight: 600;
-cursor: pointer;
-white-space: nowrap;
+  padding: 0 1rem;
+  border-radius: 10px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
 }
-
 
 /* ===============================
-TODO LIST
+   TODO LIST
 ================================ */
 .todo-item {
-display: flex;
-align-items: flex-start;
-gap: 0.8rem;
-padding: 0.75rem 0.8rem;
-background: var(--item-bg);
-border-radius: 12px;
-margin-bottom: 0.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.75rem 0.8rem;
+  background: var(--item-bg);
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
 }
-
 
 /* CHECK ICON */
 .todo-item > div:first-child {
-margin-top: 2px;
-cursor: pointer;
-flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
 }
-
 
 /* ===============================
-TEXT (NO OVERFLOW FIX)
+   TEXT (NO OVERFLOW FIX)
 ================================ */
 .todo-item span {
-flex: 1;
-font-size: 0.95rem;
-line-height: 1.4;
-word-break: break-word;
-overflow-wrap: anywhere;
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
-
 
 /* COMPLETED */
 .todo-item.completed span {
-text-decoration: line-through;
-opacity: 0.6;
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
-
 /* ===============================
-DELETE ICON
+   DELETE ICON
 ================================ */
 .todo-item button {
-background: transparent;
-border: none;
-cursor: pointer;
-color: var(--muted);
-flex-shrink: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  flex-shrink: 0;
 }
-
 
 .todo-item button:hover {
-color: var(--danger);
+  color: var(--danger);
 }
 
-
 /* ===============================
-LOGOUT
+   LOGOUT
 ================================ */
 .logout-btn {
-margin-top: 1.4rem;
-width: 100%;
-background: transparent;
-border: none;
-color: var(--muted);
-font-size: 0.9rem;
-cursor: pointer;
-display: flex;
-justify-content: center;
-gap: 0.4rem;
+  margin-top: 1.4rem;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
 }
-
 
 .logout-btn:hover {
-color: var(--danger);
+  color: var(--danger);
 }
-
 
 /* ===============================
-MOBILE RESPONSIVE
+   MOBILE RESPONSIVE
 ================================ */
 @media (max-width: 480px) {
-.todo-container {
-padding: 1.4rem;
+  .todo-container {
+    padding: 1.4rem;
+  }
+
+  .todo-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group button {
+    height: 2.6rem;
+  }
 }
-
-
-.todo-header h1 {
-font-size: 1.6rem;
-}
-
-
-.input-group {
-flex-direction: column;
-}
-
-
-.input-group button {
-height: 2.6rem;
-}
-} 
