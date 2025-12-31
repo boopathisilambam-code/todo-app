@@ -29,7 +29,7 @@ function Todo() {
     const fetchTodos = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('https://todo-znes.onrender.com/api/todos', getAuthHeaders());
+        const res = await axios.get('${process.env.REACT_APP_API_URL}/api/todos', getAuthHeaders());
         setTodolist(res.data);
       } catch (err) {
         showError('Session expired. Please log in again.');
@@ -45,7 +45,7 @@ function Todo() {
   const addTodo = async () => {
     if (todo.trim() === '') return;
     try {
-      const res = await axios.post('https://todo-znes.onrender.com/api/todos', { text: todo }, getAuthHeaders());
+      const res = await axios.post('${process.env.REACT_APP_API_URL}/api/todos', { text: todo }, getAuthHeaders());
       setTodolist([res.data, ...todolist]);
       setTodo('');
     } catch (err) {
@@ -55,7 +55,7 @@ function Todo() {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`https://todo-znes.onrender.com/api/todos/${id}`, getAuthHeaders());
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/todos/${id}`, getAuthHeaders());
       setTodolist(todolist.filter((item) => item._id !== id));
     } catch (err) {
       showError('Failed to delete task.');
@@ -66,7 +66,7 @@ function Todo() {
     const currentTodo = todolist.find((item) => item._id === id);
     if (!currentTodo) return;
     try {
-      const res = await axios.put(`https://todo-znes.onrender.com/api/todos/${id}`, { completed: !currentTodo.completed }, getAuthHeaders());
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/todos/${id}`, { completed: !currentTodo.completed }, getAuthHeaders());
       setTodolist(todolist.map((item) => (item._id === id ? res.data : item)));
     } catch (err) {
       showError('Failed to update task.');
@@ -76,7 +76,7 @@ function Todo() {
   const saveEdit = async (id) => {
     if (editText.trim() === '') return;
     try {
-      const res = await axios.put(`https://todo-znes.onrender.com/api/todos/${id}`, { text: editText }, getAuthHeaders());
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/todos/${id}`, { text: editText }, getAuthHeaders());
       setTodolist(todolist.map((item) => (item._id === id ? res.data : item)));
       setEditingId(null);
     } catch (err) {
