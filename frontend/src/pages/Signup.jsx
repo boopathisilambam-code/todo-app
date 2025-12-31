@@ -18,7 +18,7 @@ export default function Signup() {
     setError('');
     setLoading(true);
     try {
-      await axios.post('${process.env.REACT_APP_API_URL}/api/signup', { email, password });
+      await axios.post('${import.meta.env.VITE_API_URL}/api/signup', { email, password });
       setSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
