@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Trash2, Plus, LogOut, CheckCircle2, Circle, Edit3, X, Save } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import '../styles/Todo.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
+import { Trash2, Plus, LogOut, CheckCircle2, Circle } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import "../styles/Todo.css";
 
 function Todo() {
-  const [todo, setTodo] = useState('');
+  const [todo, setTodo] = useState("");
   const [todolist, setTodolist] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [editingId, setEditingId] = useState(null);
-  const [editText, setEditText] = useState('');
+
+  // ✅ REQUIRED dark mode state
+  const [darkMode, setDarkMode] = useState(false);
 
   const navigate = useNavigate();
   const { logout } = useAuth();
 
-  // ✅ FIX: Bearer token
   const getAuthHeaders = () => ({
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
 
   const showError = (msg) => {
     setError(msg);
-    setTimeout(() => setError(''), 3000);
+    setTimeout(() => setError(""), 3000);
   };
 
   useEffect(() => {
@@ -39,13 +39,11 @@ function Todo() {
         );
         setTodolist(res.data);
       } catch (err) {
-        // ✅ FIX: logout ONLY on 401
         if (err.response?.status === 401) {
-          showError('Session expired. Please login again.');
           logout();
-          navigate('/login');
+          navigate("/login");
         } else {
-          showError('Failed to load todos.');
+          showError("Failed to load tasks");
         }
       } finally {
         setLoading(false);
@@ -64,9 +62,9 @@ function Todo() {
         getAuthHeaders()
       );
       setTodolist([res.data, ...todolist]);
-      setTodo('');
+      setTodo("");
     } catch {
-      showError('Failed to add task.');
+      showError("Failed to add task");
     }
   };
 
@@ -78,7 +76,7 @@ function Todo() {
       );
       setTodolist(todolist.filter((t) => t._id !== id));
     } catch {
-      showError('Failed to delete task.');
+      showError("Failed to delete task");
     }
   };
 
@@ -92,28 +90,13 @@ function Todo() {
       );
       setTodolist(todolist.map((t) => (t._id === id ? res.data : t)));
     } catch {
-      showError('Failed to update task.');
-    }
-  };
-
-  const saveEdit = async (id) => {
-    if (!editText.trim()) return;
-    try {
-      const res = await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/todos/${id}`,
-        { text: editText },
-        getAuthHeaders()
-      );
-      setTodolist(todolist.map((t) => (t._id === id ? res.data : t)));
-      setEditingId(null);
-    } catch {
-      showError('Failed to update task.');
+      showError("Failed to update task");
     }
   };
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -139,31 +122,28 @@ function Todo() {
 
         <AnimatePresence>
           {todolist.map((item) => (
-            <motion.div key={item._id} className="todo-item">
+            <motion.div
+              key={item._id}
+              className={`todo-item ${item.completed ? "completed" : ""}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+            >
               <div onClick={() => toggleComplete(item._id)}>
                 {item.completed ? <CheckCircle2 /> : <Circle />}
               </div>
 
-              {editingId === item._id ? (
-                <input
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                />
-              ) : (
-                <span>{item.text}</span>
-              )}
+              <span>{item.text}</span>
 
-              <div>
-                <button onClick={() => deleteTodo(item._id)}>
-                  <Trash2 />
-                </button>
-              </div>
+              <button onClick={() => deleteTodo(item._id)}>
+                <Trash2 size={18} />
+              </button>
             </motion.div>
           ))}
         </AnimatePresence>
 
         <button onClick={handleLogout} className="logout-btn">
-          <LogOut /> Logout
+          <LogOut size={16} /> Logout
         </button>
       </div>
     </div>
