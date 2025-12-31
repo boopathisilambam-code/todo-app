@@ -18,7 +18,7 @@ export default function Signup() {
     setError('');
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/signup', { email, password });
+      await axios.post('https://todo-znes.onrender.com/api/signup', { email, password });
       setSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
