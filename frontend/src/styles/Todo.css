@@ -53,11 +53,33 @@
 /* ===============================
    HEADER
 ================================ */
+.todo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
 .todo-header h1 {
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--primary);
-  margin-bottom: 1.5rem;
+}
+
+/* ===============================
+   THEME TOGGLE BUTTON
+================================ */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.theme-toggle:hover {
+  color: var(--primary);
 }
 
 /* ===============================
@@ -122,7 +144,7 @@
 }
 
 /* ===============================
-   TEXT (NO OVERFLOW FIX)
+   TEXT (IMPROVED OVERFLOW HANDLING)
 ================================ */
 .todo-item span {
   flex: 1;
@@ -130,6 +152,8 @@
   line-height: 1.4;
   word-break: break-word;
   overflow-wrap: anywhere;
+  max-height: 4rem; /* Prevent excessive vertical growth */
+  overflow-y: auto; /* Scroll if text is too long */
 }
 
 /* COMPLETED */
@@ -174,7 +198,7 @@
 }
 
 /* ===============================
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE (UPDATED WITH MORE BREAKPOINTS)
 ================================ */
 @media (max-width: 480px) {
   .todo-container {
@@ -191,5 +215,29 @@
 
   .input-group button {
     height: 2.6rem;
+  }
+}
+
+/* Tablet and larger mobile adjustments */
+@media (max-width: 768px) {
+  .todo-container {
+    max-width: 90%;
+    padding: 1.6rem;
+  }
+
+  .todo-item {
+    padding: 1rem;
+  }
+
+  .todo-item button, .todo-item > div:first-child {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+  .todo-container {
+    max-width: 500px;
   }
 }
