@@ -19,7 +19,7 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('${import.meta.env.VITE_API_URL}/api/login', { email, password });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, { email, password });
       login(res.data.token);
       navigate('/todo');
     } catch (err) {
