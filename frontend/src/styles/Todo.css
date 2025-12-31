@@ -1,5 +1,5 @@
 /* ===============================
-   THEME VARIABLES
+   TODO THEME VARIABLES
 ================================ */
 :root {
   --primary: #6366f1;
@@ -15,10 +15,11 @@
   --shadow-xl: 0 25px 40px rgba(0, 0, 0, 0.12);
 }
 
+/* DARK MODE */
 .todo-page.dark {
   --bg-page: #020617;
   --surface: #020617;
-  --item-bg: rgba(255, 255, 255, 0.04);
+  --item-bg: rgba(255, 255, 255, 0.05);
   --border: #1e293b;
   --text: #f8fafc;
 }
@@ -28,11 +29,10 @@
 ================================ */
 .todo-page {
   min-height: 100vh;
-  width: 100%;
   background: var(--bg-page);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 2rem;
   color: var(--text);
 }
@@ -44,8 +44,8 @@
   width: 100%;
   max-width: 520px;
   background: var(--surface);
-  border-radius: 20px;
   padding: 2rem;
+  border-radius: 20px;
   box-shadow: var(--shadow-xl);
 }
 
@@ -55,7 +55,6 @@
 .todo-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 2rem;
 }
 
@@ -81,7 +80,6 @@
   border: 2px solid var(--border);
   background: transparent;
   color: var(--text);
-  font-size: 1rem;
 }
 
 .input-group input:focus {
@@ -89,12 +87,12 @@
   border-color: var(--primary);
 }
 
-/* BUTTON (FIXED) */
+/* BUTTON */
 .input-group button {
   padding: 0 1.4rem;
   border-radius: 12px;
   background: var(--primary);
-  color: #fff;
+  color: white;
   border: none;
   font-weight: 600;
   cursor: pointer;
@@ -104,7 +102,7 @@
 }
 
 /* ===============================
-   TODO LIST
+   TODO ITEM
 ================================ */
 .todo-item {
   display: flex;
@@ -114,8 +112,8 @@
   background: var(--item-bg);
   border-radius: 14px;
   border: 1px solid var(--border);
-  margin-bottom: 0.8rem;
-  transition: all 0.2s ease;
+  margin-bottom: 0.75rem;
+  transition: 0.2s ease;
 }
 
 .todo-item:hover {
@@ -126,15 +124,12 @@
 /* CHECK ICON */
 .todo-item > div:first-child {
   cursor: pointer;
-  display: flex;
-  align-items: center;
 }
 
 /* TEXT */
 .todo-item span {
   flex: 1;
   font-size: 1.05rem;
-  word-break: break-word;
 }
 
 /* COMPLETED */
@@ -143,7 +138,7 @@
   opacity: 0.6;
 }
 
-/* DELETE BUTTON */
+/* DELETE */
 .todo-item button {
   background: transparent;
   border: none;
@@ -164,10 +159,9 @@
   background: transparent;
   border: none;
   color: #64748b;
-  cursor: pointer;
   font-weight: 500;
+  cursor: pointer;
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 0.5rem;
 }
@@ -177,7 +171,7 @@
 }
 
 /* ===============================
-   RESPONSIVE
+   MOBILE
 ================================ */
 @media (max-width: 640px) {
   .input-group {
