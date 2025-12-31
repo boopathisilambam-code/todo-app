@@ -1,18 +1,18 @@
 /* ===============================
-   TODO THEME VARIABLES
+   THEME VARIABLES
 ================================ */
 :root {
-  --primary: #6366f1;
+  --primary: #7c6bf2;
   --danger: #ef4444;
 
-  --bg-page: #f8fafc;
+  --bg-page: #f5f7fb;
   --surface: #ffffff;
-  --item-bg: #f1f5f9;
-  --border: #e2e8f0;
+  --item-bg: #f8fafc;
+  --border: #e5e7eb;
   --text: #0f172a;
+  --muted: #64748b;
 
-  --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0 25px 40px rgba(0, 0, 0, 0.12);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* DARK MODE */
@@ -22,6 +22,7 @@
   --item-bg: rgba(255, 255, 255, 0.05);
   --border: #1e293b;
   --text: #f8fafc;
+  --muted: #94a3b8;
 }
 
 /* ===============================
@@ -31,37 +32,32 @@
   min-height: 100vh;
   background: var(--bg-page);
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 2rem;
+  justify-content: center;
+  padding: 1.5rem;
   color: var(--text);
 }
 
 /* ===============================
-   CONTAINER
+   CONTAINER (CARD)
 ================================ */
 .todo-container {
   width: 100%;
-  max-width: 520px;
+  max-width: 420px;
   background: var(--surface);
-  padding: 2rem;
   border-radius: 20px;
-  box-shadow: var(--shadow-xl);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
 }
 
 /* ===============================
    HEADER
 ================================ */
-.todo-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-}
-
 .todo-header h1 {
-  font-size: 2.3rem;
+  font-size: 1.8rem;
   font-weight: 800;
   color: var(--primary);
+  margin-bottom: 1.5rem;
 }
 
 /* ===============================
@@ -69,17 +65,22 @@
 ================================ */
 .input-group {
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
 }
 
 .input-group input {
   flex: 1;
-  padding: 0.9rem 1.2rem;
-  border-radius: 12px;
-  border: 2px solid var(--border);
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
   background: transparent;
   color: var(--text);
+  font-size: 0.95rem;
+}
+
+.input-group input::placeholder {
+  color: var(--muted);
 }
 
 .input-group input:focus {
@@ -87,49 +88,48 @@
   border-color: var(--primary);
 }
 
-/* BUTTON */
+/* ADD BUTTON */
 .input-group button {
-  padding: 0 1.4rem;
-  border-radius: 12px;
+  padding: 0 1rem;
+  border-radius: 10px;
   background: var(--primary);
   color: white;
   border: none;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  white-space: nowrap;
 }
 
 /* ===============================
-   TODO ITEM
+   TODO LIST
 ================================ */
 .todo-item {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.9rem 1rem;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.75rem 0.8rem;
   background: var(--item-bg);
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  margin-bottom: 0.75rem;
-  transition: 0.2s ease;
-}
-
-.todo-item:hover {
-  transform: translateX(4px);
-  box-shadow: var(--shadow-md);
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
 }
 
 /* CHECK ICON */
 .todo-item > div:first-child {
+  margin-top: 2px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
-/* TEXT */
+/* ===============================
+   TEXT (NO OVERFLOW FIX)
+================================ */
 .todo-item span {
   flex: 1;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 /* COMPLETED */
@@ -138,12 +138,15 @@
   opacity: 0.6;
 }
 
-/* DELETE */
+/* ===============================
+   DELETE ICON
+================================ */
 .todo-item button {
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #94a3b8;
+  color: var(--muted);
+  flex-shrink: 0;
 }
 
 .todo-item button:hover {
@@ -154,16 +157,16 @@
    LOGOUT
 ================================ */
 .logout-btn {
-  margin-top: 2rem;
+  margin-top: 1.4rem;
   width: 100%;
   background: transparent;
   border: none;
-  color: #64748b;
-  font-weight: 500;
+  color: var(--muted);
+  font-size: 0.9rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .logout-btn:hover {
@@ -171,15 +174,22 @@
 }
 
 /* ===============================
-   MOBILE
+   MOBILE RESPONSIVE
 ================================ */
-@media (max-width: 640px) {
+@media (max-width: 480px) {
+  .todo-container {
+    padding: 1.4rem;
+  }
+
+  .todo-header h1 {
+    font-size: 1.6rem;
+  }
+
   .input-group {
     flex-direction: column;
   }
 
   .input-group button {
-    height: 3rem;
-    justify-content: center;
+    height: 2.6rem;
   }
 }
