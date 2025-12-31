@@ -1,172 +1,209 @@
-/* ===============================
-   CSS VARIABLES
-================================ */
-:root {
-  /* Brand Colors from Image */
-  --primary-purple: #8b5cf6;
-  --primary-blue: #6366f1;
-  --gradient-main: linear-gradient(to right, #6366f1, #a855f7);
-  
-  /* Backgrounds */
-  --bg-page: #f1f5f9; /* Soft grey-blue background */
-  --surface-card: #ffffff;
-  --bg-item: #f8fafc; /* Very light tint for list items */
-  
-  /* Text & Borders */
-  --text-main: #475569;
-  --border-input: #6366f1; /* Purple/Blue border from image */
-  --placeholder: #94a3b8;
-  
-  /* Shadows */
-  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-}
-
-/* ===============================
-   PAGE SETUP
-================================ */
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif; /* Recommended font for this look */
-}
-
 .todo-page {
   width: 100%;
-  min-height: 100vh;
-  background-color: var(--bg-page);
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
 }
 
-/* ===============================
-   CONTAINER (The White Card)
-================================ */
 .todo-container {
   width: 100%;
-  max-width: 480px;
-  background: var(--surface-card);
-  border-radius: 24px; /* Soft rounded corners */
-  padding: 40px;
-  box-shadow: var(--shadow-card);
+  max-width: 600px;
+  background: var(--surface-light);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-xl);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* ===============================
-   HEADER
-================================ */
+.dark .todo-container {
+  background: var(--surface-dark);
+}
+
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 .todo-header h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  margin-top: 0;
-  margin-bottom: 2rem;
-  background: var(--gradient-main);
+  background: var(--gradient-1);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
 }
 
-/* ===============================
-   INPUT GROUP
-================================ */
 .input-group {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   margin-bottom: 2rem;
+  position: relative;
 }
 
 .input-group input {
   flex: 1;
-  padding: 12px 20px;
+  padding: 1rem 1.5rem;
   border-radius: 12px;
-  border: 1.5px solid #cbd5e1; /* Default border */
-  border-color: var(--primary-blue); /* Matching the blue outline in image */
-  background: #fff;
+  border: 2px solid var(--border-light);
+  background: transparent;
+  color: inherit;
   font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .input-group input {
+  border-color: var(--border-dark);
+}
+
+.input-group input:focus {
   outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-.input-group input::placeholder {
-  color: var(--placeholder);
-  font-style: italic; /* Matches the "workout" placeholder style */
-}
-
-/* ===============================
-   ADD BUTTON
-================================ */
 .add-button {
-  padding: 0 20px;
+  padding: 0 1.5rem;
   border-radius: 12px;
-  background: var(--gradient-main);
-  color: #ffffff;
+  background: var(--gradient-1);
+  color: white;
   border: none;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
-  white-space: nowrap;
+  gap: 0.5rem;
 }
 
-.add-button:hover {
-  opacity: 0.9;
-}
-
-/* ===============================
-   TODO ITEM
-================================ */
 .todo-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1rem;
 }
 
 .todo-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 16px 20px;
-  background: var(--bg-item);
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-light);
   border-radius: 16px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
-/* Checkbox Circle */
+.dark .todo-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.todo-item:hover {
+  transform: translateX(4px);
+  background: var(--surface-light);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-light);
+}
+
+.dark .todo-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-dark);
+}
+
+.todo-item.completed {
+  opacity: 0.6;
+}
+
 .checkbox-wrapper {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #cbd5e1;
-  background: white;
+  position: relative;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
 .todo-text {
   flex: 1;
-  font-size: 1rem;
-  color: var(--text-main);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  color: inherit;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
-/* ===============================
-   LOGOUT
-================================ */
-.logout-container {
-  margin-top: 30px;
+.dark .todo-text {
+  color: #ffffff;
+}
+
+.completed .todo-text {
+  text-decoration: line-through;
+}
+
+.item-actions {
   display: flex;
-  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.todo-item:hover .item-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  color: var(--primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.action-btn.delete:hover {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.logout-container {
+  margin-top: 2rem;
+  text-align: center;
 }
 
 .logout-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
-  font-size: 0.9rem;
+  color: #64748b;
   cursor: pointer;
-  display: flex;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5rem;
 }
 
 .logout-btn:hover {
-  color: #64748b;
+  color: var(--danger);
+}
+
+@media (max-width: 640px) {
+  .todo-container {
+    padding: 1.5rem;
+  }
+
+  .todo-header h1 {
+    font-size: 2rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .add-button {
+    height: 3.5rem;
+    justify-content: center;
+  }
 }
