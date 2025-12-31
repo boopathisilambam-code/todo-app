@@ -19,7 +19,7 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/login', { email, password });
+      const res = await axios.post('https://todo-znes.onrender.com/api/login', { email, password });
       login(res.data.token);
       navigate('/todo');
     } catch (err) {
