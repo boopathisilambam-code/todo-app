@@ -29,7 +29,7 @@ function Todo() {
     const fetchTodos = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('${import.meta.env.VITE_API_URL}/api/todos', getAuthHeaders());
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/todos`, getAuthHeaders());
         setTodolist(res.data);
       } catch (err) {
         showError('Session expired. Please log in again.');
@@ -45,7 +45,7 @@ function Todo() {
   const addTodo = async () => {
     if (todo.trim() === '') return;
     try {
-      const res = await axios.post('${import.meta.env.VITE_API_URL}/api/todos', { text: todo }, getAuthHeaders());
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/todos`, { text: todo }, getAuthHeaders());
       setTodolist([res.data, ...todolist]);
       setTodo('');
     } catch (err) {
